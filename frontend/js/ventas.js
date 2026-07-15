@@ -141,19 +141,59 @@ async function realizarVenta() {
 
     });
 
-    if (respuesta.ok) {
-
-        alert("Venta registrada correctamente");
-
-        carrito = [];
-
-        actualizarTabla();
-
-    } else {
+    if (!respuesta.ok) {
 
         alert("Error al registrar la venta");
+        return;
 
     }
+
+    const ventaGuardada = await respuesta.json();
+
+    // Cliente seleccionado
+    const clienteSelect = document.getElementById("cliente");
+
+    const nombreCliente =
+        clienteSelect.options[clienteSelect.selectedIndex].text;
+
+    // Copiamos el carrito para la boleta
+    const productosBoleta = carrito.map(item => ({
+        nombre: item.nombre,
+        cantidad: item.cantidad,
+        precio: item.precio,
+        subtotal: item.subtotal
+    }));
+
+    const total = productosBoleta.reduce((s, p) => s + p.subtotal, 0);
+
+    console.log("Carrito antes de guardar:", carrito);
+
+    console.log("Productos boleta:", productosBoleta);
+
+    console.log("Total:", total);
+
+    // Guardamos la información de la boleta
+    localStorage.setItem("boleta", JSON.stringify({
+
+        numero: ventaGuardada.idVenta,
+
+        fecha: new Date().toLocaleString("es-PE"),
+
+        cliente: nombreCliente,
+
+        productos: productosBoleta,
+
+        total: total
+
+    }));
+
+    // Limpiamos el carrito
+    carrito = [];
+
+    actualizarTabla();
+
+    // Abrimos la boleta
+    window.location.href = "boleta.html";
 
 }
 
