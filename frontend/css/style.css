@@ -1,0 +1,175 @@
+body{
+
+margin:0;
+
+background:#f4f6f9;
+
+font-family:Segoe UI;
+
+}
+
+.login-page{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+}
+
+.login-box{
+
+background:white;
+
+padding:40px;
+
+border-radius:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+width:380px;
+
+}
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:250px;
+
+height:100vh;
+
+background:#0d6efd;
+
+padding:20px;
+
+color:white;
+
+box-shadow:3px 0 10px rgba(0,0,0,.15);
+
+}
+
+.sidebar a{
+
+display:block;
+
+color:white;
+
+text-decoration:none;
+
+padding:12px;
+
+border-radius:8px;
+
+margin-bottom:10px;
+
+}
+
+.sidebar a:hover{
+
+background:rgba(255,255,255,.2);
+
+}
+
+.contenido{
+
+margin-left:250px;
+
+padding:35px;
+
+width:calc(100% - 250px);
+
+min-height:100vh;
+
+background:#f4f6f9;
+
+}
+
+.card{
+
+border:none;
+
+border-radius:15px;
+
+}
+
+.sidebar a.active{
+
+background:white;
+
+color:#0d6efd;
+
+font-weight:bold;
+
+}
+
+table{
+
+border-radius:12px;
+
+overflow:hidden;
+
+}
+
+.modal-content{
+
+border-radius:15px;
+
+}
+
+.dashboard-card{
+
+    border-radius:18px;
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.dashboard-card h1{
+
+    font-size:55px;
+
+    margin:10px 0;
+
+}
+
+.productos{
+
+    border-top:6px solid #0d6efd;
+
+}
+
+.clientes{
+
+    border-top:6px solid #198754;
+
+}
+
+.ventas{
+
+    border-top:6px solid #ffc107;
+
+}
+
+#reloj{
+
+    text-align:right;
+
+    min-width:180px;
+
+}

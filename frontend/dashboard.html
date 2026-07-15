@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Lusiana Store</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="d-flex">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <h3 class="text-center mb-4">
+            LUSIANA
+        </h3>
+
+        <a href="dashboard.html">🏠 Dashboard</a>
+
+        <a href="productos.html">👕 Productos</a>
+
+        <a href="clientes.html">👤 Clientes</a>
+
+        <a href="ventas.html">🛒 Ventas</a>
+
+        <hr>
+
+        <a href="index.html">🚪 Cerrar sesión</a>
+
+    </div>
+
+    <!-- Contenido -->
+    <div class="contenido">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2>👋 Bienvenido al Sistema de Ventas</h2>
+            <p class="text-muted mb-0">Lusiana Store</p>
+        </div>
+
+        <div id="reloj" class="fs-5 fw-bold text-primary"></div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="card dashboard-card productos">
+
+                <div class="card-body text-center">
+
+                    <h5>📦 Productos</h5>
+
+                    <h1 id="totalProductos">0</h1>
+
+                    <small class="text-muted">Inventario registrado</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card dashboard-card clientes">
+
+                <div class="card-body text-center">
+
+                    <h5>👥 Clientes</h5>
+
+                    <h1 id="totalClientes">0</h1>
+
+                    <small class="text-muted">Clientes registrados</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card dashboard-card ventas">
+
+                <div class="card-body text-center">
+
+                    <h5>💰 Ventas</h5>
+
+                    <h1 id="totalVentas">0</h1>
+
+                    <small class="text-muted">Ventas realizadas</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h5>📈 Última venta</h5>
+
+                    <hr>
+
+                    <p><strong>Cliente:</strong> <span id="clienteUltima">-</span></p>
+
+                    <p><strong>Total:</strong> <span id="totalUltima">S/. 0.00</span></p>
+
+                    <p><strong>Fecha:</strong> <span id="fechaUltima">-</span></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h5>🏆 Estado del sistema</h5>
+
+                    <hr>
+
+                    <p>✔ Backend conectado</p>
+
+                    <p>✔ Base de datos MySQL</p>
+
+                    <p>✔ API REST funcionando</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>
