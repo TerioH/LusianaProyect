@@ -2,17 +2,15 @@ const API = "http://localhost:8080/clientes";
 
 let idEditar = null;
 
-async function cargarClientes(){
+async function cargarClientes() {
+  const respuesta = await fetch(API);
 
-    const respuesta = await fetch(API);
+  const clientes = await respuesta.json();
 
-    const clientes = await respuesta.json();
+  let html = "";
 
-    let html = "";
-
-    clientes.forEach(c=>{
-
-        html += `
+  clientes.forEach((c) => {
+    html += `
 
         <tr>
 
@@ -51,96 +49,79 @@ async function cargarClientes(){
         </tr>
 
         `;
+  });
 
-    });
-
-    document.getElementById("tablaClientes").innerHTML = html;
-
+  document.getElementById("tablaClientes").innerHTML = html;
 }
 
 cargarClientes();
 
-async function guardarCliente(){
+async function guardarCliente() {
+  const cliente = {
+    dni: document.getElementById("dni").value,
+    nombre: document.getElementById("nombre").value,
+    apellido: document.getElementById("apellido").value,
+    telefono: document.getElementById("telefono").value,
+    correo: document.getElementById("correo").value,
+    direccion: document.getElementById("direccion").value,
+    estado: true,
+  };
 
-    const cliente = {
-
-        dni: document.getElementById("dni").value,
-        nombre: document.getElementById("nombre").value,
-        apellido: document.getElementById("apellido").value,
-        telefono: document.getElementById("telefono").value,
-        correo: document.getElementById("correo").value,
-        direccion: document.getElementById("direccion").value,
-        estado:true
-
-    };
-
-    if(idEditar==null){
-
-        await fetch(API,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(cliente)
-        });
-
-    }else{
-
-        await fetch(API+"/"+idEditar,{
-            method:"PUT",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(cliente)
-        });
-
-    }
-
-    location.reload();
-
-}
-
-async function editar(id){
-
-    const respuesta = await fetch(API+"/"+id);
-
-    const c = await respuesta.json();
-
-    idEditar = id;
-
-    document.getElementById("dni").value = c.dni;
-    document.getElementById("nombre").value = c.nombre;
-    document.getElementById("apellido").value = c.apellido;
-    document.getElementById("telefono").value = c.telefono;
-    document.getElementById("correo").value = c.correo;
-    document.getElementById("direccion").value = c.direccion;
-
-    new bootstrap.Modal(document.getElementById("modalCliente")).show();
-
-}
-
-async function eliminar(id){
-
-    if(!confirm("¿Eliminar cliente?"))
-        return;
-
-    await fetch(API+"/"+id,{
-        method:"DELETE"
+  if (idEditar == null) {
+    await fetch(API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cliente),
     });
+  } else {
+    await fetch(API + "/" + idEditar, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cliente),
+    });
+  }
 
-    cargarClientes();
-
+  location.reload();
 }
 
-function limpiarFormulario(){
+async function editar(id) {
+  const respuesta = await fetch(API + "/" + id);
 
-    idEditar = null;
+  const c = await respuesta.json();
 
-    document.getElementById("dni").value = "";
-    document.getElementById("nombre").value = "";
-    document.getElementById("apellido").value = "";
-    document.getElementById("telefono").value = "";
-    document.getElementById("correo").value = "";
-    document.getElementById("direccion").value = "";
+  idEditar = id;
 
+  document.getElementById("dni").value = c.dni;
+  document.getElementById("nombre").value = c.nombre;
+  document.getElementById("apellido").value = c.apellido;
+  document.getElementById("telefono").value = c.telefono;
+  document.getElementById("correo").value = c.correo;
+  document.getElementById("direccion").value = c.direccion;
+
+  new bootstrap.Modal(document.getElementById("modalCliente")).show();
+}
+
+async function eliminar(id) {
+  if (!confirm("¿Eliminar cliente?")) return;
+
+  await fetch(API + "/" + id, {
+    method: "DELETE",
+  });
+
+  cargarClientes();
+}
+
+function limpiarFormulario() {
+  idEditar = null;
+
+  document.getElementById("dni").value = "";
+  document.getElementById("nombre").value = "";
+  document.getElementById("apellido").value = "";
+  document.getElementById("telefono").value = "";
+  document.getElementById("correo").value = "";
+  document.getElementById("direccion").value = "";
 }

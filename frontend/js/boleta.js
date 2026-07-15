@@ -1,27 +1,23 @@
 const datos = JSON.parse(localStorage.getItem("boleta"));
 
 if (!datos) {
+  alert("No existe una venta para mostrar.");
 
-    alert("No existe una venta para mostrar.");
-
-    window.location = "ventas.html";
-
+  window.location = "ventas.html";
 }
 
-document.getElementById("numeroBoleta").textContent =
-String(datos.numero).padStart(6, "0");
+document.getElementById("numeroBoleta").textContent = String(
+  datos.numero,
+).padStart(6, "0");
 
-document.getElementById("fecha").textContent =
-datos.fecha;
+document.getElementById("fecha").textContent = datos.fecha;
 
-document.getElementById("cliente").textContent =
-datos.cliente;
+document.getElementById("cliente").textContent = datos.cliente;
 
 let html = "";
 
-datos.productos.forEach(producto => {
-
-    html += `
+datos.productos.forEach((producto) => {
+  html += `
 
     <tr>
 
@@ -36,10 +32,9 @@ datos.productos.forEach(producto => {
     </tr>
 
     `;
-
 });
 
 document.getElementById("detalleBoleta").innerHTML = html;
 
 document.getElementById("total").textContent =
-"S/. " + Number(datos.total).toFixed(2);
+  "S/. " + Number(datos.total).toFixed(2);
